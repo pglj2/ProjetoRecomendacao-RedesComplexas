@@ -36,3 +36,7 @@ function cleanData(data){
     console.log(cont);
     console.log(a);
 }
+
+$('#submeterTags').submit(function(){
+    return false;
+});
