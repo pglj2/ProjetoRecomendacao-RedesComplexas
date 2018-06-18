@@ -1,4 +1,4 @@
-d3.csv("./data/dataset.csv", (data => {
+d3.csv("./data/dataset_teste.csv", (data => {
  
     var dados = data.map(e => {
         return {
@@ -36,7 +36,3 @@ function cleanData(data){
     console.log(cont);
     console.log(a);
 }
-
-$('#submeterTags').submit(function(){
-    return false;
-});
