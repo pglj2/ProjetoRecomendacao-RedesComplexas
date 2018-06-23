@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <style>
+    </style>
+    <head>
+        <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <title>AMRC - Recomendar Restaurantes</title>
+    </head>
+    <body>
+        <div class="container">
+            <h4>Selecione um usuário para fazermos uma recomendação para ele :)</h4>
+            <div class="row" id="random_users">
+               <!-- <div class="col-sm-2" id="ru1"></div>
+                <div class="col-sm-2" id="ru2"></div>
+                <div class="col-sm-2" id="ru3"></div>
+                <div class="col-sm-2" id="ru4"></div>-->
+                <div class="col-sm-12" id="ru5"></div>
+            </div>
+            <div class="row" id="random_users2">
+                <!--<div class="col-sm-2" id="ru6"></div>
+                <div class="col-sm-2" id="ru7"></div>
+                <div class="col-sm-2" id="ru8"></div>
+                <div class="col-sm-2" id="ru9"></div>-->
+                <div class="col-sm-12" id="ru10"></div>
+            </div>
+        </div>
+    </body>
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var client_id = "DSFNN45CHZ1XUCDT3XQWPS5GCPF34SBE0TQ1RXD4WSURZXA2";
+    var client_secret = "KMEVLN5HTNEBNVU0MARJL2FZAAR1ETEJBXRLD1522CT4G5NZ";
+    var v = "20180623";
+    var users_ids=["93642","58758","121273","51957","204573","258400","44806","48997","80552","86519","22938","50631"];
+    /*var linha = document.getElementById("random_users");
+    linha = linha.children;
+    var arryLinha = [].slice.call(linha);*/
+  
+    function preencherGrid(identificador){
+        var j=0;
+        //console.log(arryLinha);
+    //console.log(arryLinha[1]);
+        for(i=0;i<5;i++){
+            var atual = users_ids[Math.floor(Math.random()*(users_ids.length)-1)];
+            j = i+6;
+            $.ajax({
+                url:'https://api.foursquare.com/v2/users/'+atual+'?client_id='+client_id+'&client_secret='+client_secret+'&v='+v,
+                type: 'GET'
+            }).done(function(resultado){
+                //console.log(resultado);
+                var ibagem = document.createElement("IMG");
+                var widthIcon = "width200";
+                var foto = resultado.response.user.photo;
+                var linkFoto = foto.prefix + widthIcon + foto.suffix; 
+                ibagem.setAttribute('src',linkFoto);
+                ibagem.setAttribute('value',resultado.response.user.id);
+                console.log(ibagem);
+                if(identificador == "#random_users"){
+                    $(identificador + "> #ru"+i).append(ibagem);
+                }else{
+                    $(identificador+ " > #ru"+j).append(ibagem);
+                }
+            }).fail(function(x,s,r){
+                console.log(r);
+            });
+        }   
+    }
+    preencherGrid("#random_users");
+    preencherGrid("#random_users2");
+});
+</script>    
+</html>
