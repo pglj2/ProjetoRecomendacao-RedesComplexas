@@ -4,6 +4,7 @@
 </style>
 <head>
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="style.css" type="text/css" rel="stylesheet">
     <title>AMRC - Recomendar Restaurantes</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +26,25 @@
             <div class="col-sm-2" id="ru8"></div>
             <div class="col-sm-2" id="ru9"></div>-->
             <div class="col-sm-12" id="ru10"></div>
+        </div>
+    </div>
+    <div id="recomendado" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title">Restaurante</h4><!--vai pegar nome do restaurante-->
+                </div>
+                <div class="modal-body">
+                    <p id="endereco"><b>Endereço:</b></p>
+                    <p id="contatos"><b>Contato:</b></p>
+                    <p id="categorias"><b>Categoria(s):</b></p>
+                    <p id="site"><b>Site do restaurante:</b></p>
+                    <p id="score"><b>Avaliação:</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -132,9 +132,6 @@ function cleanData(data){
 
 }
 
-
-
-
 function buscarUsuario(id_usuario) {
     var id = id_usuario.toString();
     var usuario;
@@ -153,6 +150,43 @@ function buscarUsuario(id_usuario) {
 
         var localRecomendado = recomendarLocal(usuario, locais);
         console.log("O local recomendado é: "+ localRecomendado);
+        modalLocalRecomendado(localRecomendado);
+}
+
+function modalLocalRecomendado(localRecomendado){
+    $.ajax({//
+        url:"https://api.foursquare.com/v2/venues/" + localRecomendado + "?client_id=DSFNN45CHZ1XUCDT3XQWPS5GCPF34SBE0TQ1RXD4WSURZXA2&client_secret=KMEVLN5HTNEBNVU0MARJL2FZAAR1ETEJBXRLD1522CT4G5NZ&v=20180622",
+        type: 'GET'
+    }).done(function(resultado){
+        var local = resultado.response.venue;
+        $(".modal-title").html(local.name);
+        var elemento = document.getElementById("contatos");
+        elemento.innerHTML += local.contact.formattedPhone;
+        var endereco = local.location.formattedAddress[0]+","+local.location.formattedAddress[1]
+        +local.location.formattedAddress[2];
+        elemento = document.getElementById("endereco");
+        elemento.innerHTML += endereco;
+        var categorias = "";
+        for(j=0;j<local.categories.length;j++){
+            if(j!=local.categories.length-1){
+                categorias += local.categories[j].name+" - ";
+            }else{
+                categorias += local.categories[j].name;
+            }
+        }
+        elemento = document.getElementById("categorias");
+        elemento.innerHTML += categorias;
+        var linkRestaurante = document.createElement("A");
+        linkRestaurante.setAttribute("href",local.canonicalUrl);
+        linkRestaurante.innerHTML = local.name;
+        $("#site").append(linkRestaurante);
+        elemento = document.getElementById("score");
+        elemento.innerHTML += local.rating;
+        
+        $("#recomendado").modal();
+    }).fail(function(x,s,r){
+        console.log(r);
+        });
 }
 
 function recomendarLocal(usu, loc){
