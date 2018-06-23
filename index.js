@@ -21,7 +21,7 @@ var lin;
 var users = [];
 var temp,temp1, temp2;
 var stringAux, stringAux2;
-
+var usi = [];
 function cleanData(data){
     data.forEach(e => {
         var aux = 0;
@@ -59,12 +59,81 @@ function cleanData(data){
         if(aux<=0)a.push(e);
     });
 
-    console.log(resp);
+    for(var i =0; i < 10; i++){
+        usi.push(users[Math.floor((Math.random() * users.length))].Id);
+    }
+
+    $(document).ready(function(){
+        var client_id = "DSFNN45CHZ1XUCDT3XQWPS5GCPF34SBE0TQ1RXD4WSURZXA2";
+        var client_secret = "KMEVLN5HTNEBNVU0MARJL2FZAAR1ETEJBXRLD1522CT4G5NZ";
+        var v = "20180623";
+        var users_ids= usi;/*["93642","58758","121273","51957","204573","258400","44806","48997","80552","86519","22938","50631"];*/
+        /*var linha = document.getElementById("random_users");
+        linha = linha.children;
+        var arryLinha = [].slice.call(linha);*/
+        var aux = [];
+        var t = false;
+        var temp;
+        function preencherGrid(identificador){
+            var j=0;
+            //console.log(arryLinha);
+        //console.log(arryLinha[1]);
+            for(i=0;i<5;i++){
+                while(!t){
+                    temp = Math.floor(Math.random()*(users_ids.length)-1);
+                    if(!aux.includes(temp)){
+                        aux.push(temp);
+                        t = true;
+                    } 
+                }
+                var atual = users_ids[temp];
+                t = false;
+                j = i+6;
+                $.ajax({
+                    url:'https://api.foursquare.com/v2/users/'+atual+'?client_id='+client_id+'&client_secret='+client_secret+'&v='+v,
+                    type: 'GET'
+                }).done(function(resultado){
+                    //console.log(resultado);
+                    var ibagem = document.createElement("IMG");
+                    var widthIcon = "width200";
+                    var foto = resultado.response.user.photo;
+                    var linkFoto = foto.prefix + widthIcon + foto.suffix; 
+                    ibagem.setAttribute('src',linkFoto);
+                    ibagem.setAttribute('value',resultado.response.user.id);
+                    console.log(ibagem);
+                    if(identificador == "#random_users"){
+                        $(identificador + "> #ru"+i).append(ibagem);
+                    }else{
+                        $(identificador+ " > #ru"+j).append(ibagem);
+                    }
+        
+                    var teste = d3.selectAll("img");
+                    console.log("test");
+                    console.log(teste);
+                }).fail(function(x,s,r){
+                    console.log(r);
+                });
+            }   
+        }
+        preencherGrid("#random_users");
+        preencherGrid("#random_users2");
+        
+        $("body").on('click','img',function(){
+            console.log($(this).attr("value"));
+            buscarUsuario($(this).attr("value"));
+            /*pesquisar onde pega a lista de venues do usuario*/
+        });
+
+        });
+    console.log(usi);
     console.log(users);
-    console.log(users[1].Id);
-    console.log(users[1].venuesId);
+    //console.log(users[1].Id);
+    //console.log(users[1].venuesId);
 
 }
+
+
+
 
 function buscarUsuario(id_usuario) {
     var id = id_usuario.toString();
@@ -80,9 +149,17 @@ function buscarUsuario(id_usuario) {
         }
     }
         console.log("oi "+ usuario);
-        console.log("seuas locais são :"+ locais);        
+        console.log("seuas locais são: "+ locais);        
 
-        recomendarLocal(usuario, locais);
+        var localRecomendado = recomendarLocal(usuario, locais);
+        console.log("O local recomendado é: "+ localRecomendado);
+}
+
+function recomendarLocal(usu, loc){
+
+    var localRec = Math.floor(Math.random()*(loc.length));
+    console.log("O local recomendado é: "+ loc[localRec]);
+    return loc[localRec];
 }
 
 function requestFourSquare(){
