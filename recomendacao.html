@@ -24,6 +24,25 @@
                 <div class="col-sm-12" id="ru10"></div>
             </div>
         </div>
+        <div id="localRecomendado" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div classs="modal-content">
+                    <div class="modal-header">
+                    <h4 class="modal-title">Restaurante</h4><!--vai pegar nome do restaurante-->
+                    </div>
+                    <div class="modal-body">
+                        <p id="endereco"><b>Endereço:</b></p>
+                        <p id="contatos"><b>Contato:</b></p>
+                        <p id="categorias"><b>Categoria(s):</b></p>
+                        <p id="site"><b>Site do restaurante:</b></p>
+                        <p id="score"><b>Avaliação:</b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -39,7 +58,7 @@ $(document).ready(function(){
     /*var linha = document.getElementById("random_users");
     linha = linha.children;
     var arryLinha = [].slice.call(linha);*/
-  
+    var valueUserID = "";
     function preencherGrid(identificador){
         var j=0;
         //console.log(arryLinha);
@@ -71,6 +90,16 @@ $(document).ready(function(){
     }
     preencherGrid("#random_users");
     preencherGrid("#random_users2");
+    /*$("body").on('click','img',function(){
+        valueUserID = $(this).val();
+        console.log("pegou");
+        /*pesquisar onde pega a lista de venues do usuario
+    });*/
 });
+/*$(window).load(function(){
+    $("img").click(function(){
+        console.log($(this).val());
+    });
+});*/
 </script>    
 </html>
