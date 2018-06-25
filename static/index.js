@@ -1,4 +1,4 @@
-d3.csv("static/data/user_venues_ids.csv", (data => {
+d3.csv("https://raw.githubusercontent.com/pglj2/ProjetoRecomendacao-RedesComplexas/master/static/data/user_venues_ids.csv?token=ALTw1-FwHcBPCaBLO9p6eqmLA3J7cpBAks5bOlg1wA%3D%3D", (data => {
  
     var dados = data.map(e => {
         return {
