@@ -154,8 +154,13 @@ function buscarUsuario(id_usuario) {
 }
 
 function modalLocalRecomendado(localRecomendado){
-    $.ajax({//
-        url:"https://api.foursquare.com/v2/venues/" + localRecomendado + "?client_id=DSFNN45CHZ1XUCDT3XQWPS5GCPF34SBE0TQ1RXD4WSURZXA2&client_secret=KMEVLN5HTNEBNVU0MARJL2FZAAR1ETEJBXRLD1522CT4G5NZ&v=20180622",
+    $("#endereco").html("<b>Endereço:</b>");
+    $("#site").html("<b>Ver no FourSquare:</b>");
+    $("#categorias").html("<b>Categoria(s):</b>");
+    $("#contatos").html("<b>Contato:</b>");
+    $("#score").html("<b>Avaliação:</b>");
+    $.ajax({
+        url:"https://api.foursquare.com/v2/venues/" + localRecomendado.trim() + "?client_id=DSFNN45CHZ1XUCDT3XQWPS5GCPF34SBE0TQ1RXD4WSURZXA2&client_secret=KMEVLN5HTNEBNVU0MARJL2FZAAR1ETEJBXRLD1522CT4G5NZ&v=20180622",
         type: 'GET'
     }).done(function(resultado){
         var local = resultado.response.venue;
@@ -185,8 +190,9 @@ function modalLocalRecomendado(localRecomendado){
         
         $("#recomendado").modal();
     }).fail(function(x,s,r){
-        console.log(r);
-        });
+        alert("Não foi possível mostrar o local.");
+        console.log(x.responseText);    
+    });
 }
 
 function recomendarLocal(usu, loc){

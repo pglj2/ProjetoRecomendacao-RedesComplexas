@@ -5,30 +5,49 @@
 <head>
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="style.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <title>AMRC - Recomendar Restaurantes</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h4>Selecione um usuário para fazermos uma recomendação para ele :)</h4>
-        <div class="row" id="random_users">
-            <!-- <div class="col-sm-2" id="ru1"></div>
-            <div class="col-sm-2" id="ru2"></div>
-            <div class="col-sm-2" id="ru3"></div>
-            <div class="col-sm-2" id="ru4"></div>-->
-            <div class="col-sm-12" id="ru5"></div>
+    <div class="container-fluid">
+        <div class="row" id="header">
+            <div class="col-md-12">
+                <h3>Análise e Mineração de Redes Complexas</h3>
+            </div>
         </div>
-        <div class="row" id="random_users2">
-            <!--<div class="col-sm-2" id="ru6"></div>
-            <div class="col-sm-2" id="ru7"></div>
-            <div class="col-sm-2" id="ru8"></div>
-            <div class="col-sm-2" id="ru9"></div>-->
-            <div class="col-sm-12" id="ru10"></div>
+        <br/>
+        <h4>Selecione um usuário para fazermos uma recomendação para ele :)</h4>
+        <br/>
+        <div class="container">
+            <div class="row" id="random_users">
+                <!-- <div class="col-sm-2" id="ru1"></div>
+                <div class="col-sm-2" id="ru2"></div>
+                <div class="col-sm-2" id="ru3"></div>
+                <div class="col-sm-2" id="ru4"></div>-->
+                <div class="col-sm-12" id="ru5"></div>
+            </div>
+            <div class="row" id="random_users2">
+                <!--<div class="col-sm-2" id="ru6"></div>
+                <div class="col-sm-2" id="ru7"></div>
+                <div class="col-sm-2" id="ru8"></div>
+                <div class="col-sm-2" id="ru9"></div>-->
+                <div class="col-sm-12" id="ru10"></div>
+            </div>
+        </div>
+        <br/>
+        <div class="row" id="footer">
+            <h6>Alunos:</h6>
+            <ul>
+                <li><b>Felipe Henrique de Almeida Bormann</b></li>
+                <li><b>Milena Santos Cabral Carneiro</b></li>
+                <li><b>Paulo Gustavo Lasalvia Jorge</b></li>
+            </ul>
         </div>
     </div>
-    <div id="recomendado" class="modal">
+    <div id="recomendado" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -38,7 +57,7 @@
                     <p id="endereco"><b>Endereço:</b></p>
                     <p id="contatos"><b>Contato:</b></p>
                     <p id="categorias"><b>Categoria(s):</b></p>
-                    <p id="site"><b>Site do restaurante:</b></p>
+                    <p id="site"><b>Ver no FourSquare:</b></p>
                     <p id="score"><b>Avaliação:</b></p>
                 </div>
                 <div class="modal-footer">
